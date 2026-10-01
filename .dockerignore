@@ -1,0 +1,23 @@
+# Keep the build context equal to what is committed, so a local build behaves
+# exactly like Railway's build from the repo - and no personal data is ever
+# baked into an image layer.
+.git
+.gitignore
+.env
+.venv
+__pycache__
+*.pyc
+
+data/
+out/
+
+# lead data: gitignored, and must not enter the image either
+seed/icp.csv
+seed/needs_review.csv
+seed/non_icp.csv
+seed/seen_contacts.csv
+seed/email_cache.csv
+
+README.md
+DEPLOY.md
+.env.example

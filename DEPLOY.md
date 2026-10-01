@@ -108,15 +108,30 @@ is running. Two consequences on Railway:
 
 Set `DISABLE_SCHEDULER=1` to serve the API without any schedule.
 
-## What is verified and what is not
+## What is verified
 
 Verified locally: all five pipeline stages under volume-style `DATA_DIR`/
 `OUT_DIR` overrides, cold-volume seeding, every endpoint including CSV download
 and `X-API-Token` auth (401 without, 200 with), the dashboard render, and
 APScheduler registering the cron with the timezone.
 
-**Not verified: the Docker image build.** The Docker daemon was not running in
-the build environment, so `docker build` was never executed. The Dockerfile is
-statically checked (every `COPY` source exists) but the first Railway build is
-the first real test. The likeliest failure is the `npm install -g deepline`
-layer or Debian's Python version; both surface immediately in the build log.
+Verified in Docker, on **both** `linux/arm64` and `linux/amd64` (Railway's
+architecture), from a build context identical to this repo:
+
+- image builds clean, 541 MB; node 20.20.2, Python 3.11.2, deepline 0.3.225
+- first boot on an empty volume seeds `stage_cache.csv` and nothing else
+- a full run via `POST /api/run` finishes in ~33 s with every stage exiting 0
+- state survives `docker restart`: the second run flags 0 new ICP contacts,
+  proving the ledger persisted on the volume
+- all three CSV endpoints, the dashboard and token auth respond correctly
+- no personal data in any image layer (`.dockerignore` keeps the build context
+  equal to the repo)
+
+### A note on changing counts
+
+Two runs ten minutes apart returned 19 and 17 ICP contacts. That is not
+non-determinism: the Humaans "Founding US GTM Lead" posting was pulled from
+YC's board between them. The pipeline reports the board as it is at fetch time,
+so a filled or withdrawn role disappears from `icp.csv`. The dedupe ledger still
+remembers the contact was queued, but the CSV does not mark the role as closed -
+worth knowing if you are mid-outreach on a lead that vanishes.

@@ -15,7 +15,7 @@ import sys as _sys, pathlib as _pl
 _sys.path.insert(0, str(_pl.Path(__file__).resolve().parent))
 import csv, sys, pathlib, datetime, argparse
 
-from paths import (ROOT, WORK_DIR as WORK, OUT_DIR as OUT, LEDGER,
+from paths import (WORK_DIR as WORK, OUT_DIR as OUT, LEDGER,
                    EMAIL_CACHE, FINAL_FILES as FINAL, ensure as _ensure)
 # One schema shared by all three files so they can be diffed or concatenated.
 SEQ_COLS = ["queued_on","classification","classification_reason",
@@ -120,7 +120,8 @@ def main():
     print(f"ICP contacts NEW this run             : {len(new_icp)}")
     if a.commit and new_icp:
         append_ledger(new_icp)
-        print(f"ledger updated: +{len(new_icp)} -> {LEDGER.relative_to(ROOT)}")
+        # plain path: on a mounted volume the ledger is not under ROOT
+        print(f"ledger updated: +{len(new_icp)} -> {LEDGER}")
     elif new_icp:
         print("preview only - rerun with --commit to record these in the ledger")
     else:
