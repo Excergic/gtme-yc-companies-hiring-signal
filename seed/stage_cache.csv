@@ -1,0 +1,14 @@
+company_domain,funding_stage,funding_stages,total_funding_raised,stage_status,stage_evidence,checked_on
+coderhouse.com,series_a,pre_seed|seed|series_a,14000000,EVIDENCED_PDL,"PDL: stage=series_a, stages=['pre_seed', 'seed', 'series_a'], raised=$14,000,000, rounds=3, last=2021-07-29, employees=1761",2026-10-01
+humaans.io,series_a,pre_seed|seed|series_a,20000000,EVIDENCED_PDL,"PDL: stage=series_a, stages=['pre_seed', 'seed', 'series_a'], raised=$20,000,000, rounds=3, last=2022-10-04, employees=53",2026-10-01
+getthera.com,seed,seed,4500000,EVIDENCED_PDL,"PDL: stage=seed, stages=['seed'], raised=$4,500,000, rounds=1, last=2024-08-22, employees=23",2026-10-01
+soff.ai,pre_seed,pre_seed,500000,EVIDENCED_PDL,"PDL: stage=pre_seed, stages=['pre_seed'], raised=$500,000, rounds=1, last=2024-09-25, employees=4",2026-10-01
+rulebase.co,pre_seed,pre_seed,2600000,EVIDENCED_PDL,"PDL: stage=pre_seed, stages=['pre_seed'], raised=$2,600,000, rounds=2, last=2025-09-16, employees=4",2026-10-01
+yarn.so,pre_seed,pre_seed|seed,1000000,EVIDENCED_PDL,"PDL: stage=pre_seed, stages=['pre_seed', 'seed'], raised=$1,000,000, rounds=2, last=2024-03-01, employees=5",2026-10-01
+orangewood.co,series_unknown,series_unknown|seed|non_equity_assistance,5640000,EVIDENCED_PDL,"PDL: stage=series_unknown, stages=['series_unknown', 'seed', 'non_equity_assistance'], raised=$5,640,000, rounds=6, last=2023-08-02, employees=52",2026-10-01
+draftwise.com,series_a,,,EVIDENCED,"Our Series A announcement – A letter from the founders. (Mar 14, 2024) https://www.draftwise.com/blog/series-a-letter-from-the-founders",2026-10-01
+mach9.ai,seed,pre_seed|seed,31244656,EVIDENCED_PDL,"PDL: stage=seed, stages=['pre_seed', 'seed'], raised=$31,244,656, rounds=5, last=2024-07-17, employees=31",2026-10-01
+useagave.com,series_a,,,EVIDENCED,"Announcing Agave's $15M Series A (Jul 07, 2026) https://useagave.com/blog/announcing-agaves-15m-series-a",2026-10-01
+reflex.dev,seed,pre_seed|seed,5500000,EVIDENCED_PDL,"PDL: stage=seed, stages=['pre_seed', 'seed'], raised=$5,500,000, rounds=2, last=2023-08-02, employees=19",2026-10-01
+nautilus.co,pre_seed,pre_seed,500000,EVIDENCED_PDL,"PDL: stage=pre_seed, stages=['pre_seed'], raised=$500,000, rounds=1, last=2025-08-12, employees=4",2026-10-01
+weaveos.com,series_a,pre_seed|seed|series_a,18200000,EVIDENCED_PDL,"PDL: stage=series_a, stages=['pre_seed', 'seed', 'series_a'], raised=$18,200,000, rounds=3, last=2026-07-28, employees=27",2026-10-01

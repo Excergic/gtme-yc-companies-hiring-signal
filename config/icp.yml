@@ -1,0 +1,43 @@
+# GTM Lead Gen Engine — ICP contract
+# Edited by hand. Every downstream stage reads this file; nothing is hardcoded.
+
+target:
+  role_label: "GTM Engineer"
+
+  # Strict = the actual ask. Adjacent = titles doing the same job under another
+  # name. Kept separate so they can be prioritised differently, never merged.
+  title_patterns_strict:
+    - '\bgtm\b'
+    - 'go.?to.?market'
+  title_patterns_adjacent:
+    - 'growth engineer'
+    - 'forward.?deployed'
+    - 'revenue engineer'
+    - 'sales engineer'
+    - 'revenue operations'
+    - '\brevops\b'
+    - 'marketing engineer'
+    - 'solutions engineer'
+
+  # Never a real GTM-engineer hire whatever the stage. Dropped from the funnel.
+  title_patterns_exclude:
+    - '\bintern\b'
+    - 'internship'
+
+  # Marks a company's FIRST dedicated GTM hire. At seed/Series A this is a
+  # positive buying signal; if stage.accept is ever moved to Series B+, treat it
+  # as an inverse signal instead (a Series B company is not hiring "founding GTM").
+  title_patterns_early_stage_marker:
+    - 'founding'
+    - 'first '
+    - '\b1st\b'
+
+stage:
+  # The stages actually sold to. Classification is recomputed from this on every
+  # run, so changing it reclassifies cached evidence for free.
+  accept: ["seed", "series_a"]
+  # pre_seed deliberately excluded: 2-6 person companies have no budget.
+  # Add "pre_seed" here to include them.
+
+sources:
+  yc_job_roles: ["sales","sales-manager","marketing","operations","software-engineer","product-manager","designer","support","science","recruiting-hr"]

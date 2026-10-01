@@ -1,0 +1,21 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+
+# runtime state
+data/
+
+# Lead data is NOT committed: this repo is public and these files carry founder
+# names, LinkedIn URLs and enriched email addresses. They are produced at run
+# time into OUT_DIR (a mounted volume on Railway) and stay local otherwise.
+out/
+seed/icp.csv
+seed/needs_review.csv
+seed/non_icp.csv
+seed/seen_contacts.csv
+seed/email_cache.csv
+
+# seed/stage_cache.csv IS committed on purpose: company domains and funding
+# evidence only, no personal data. It bootstraps a fresh volume so the paid
+# funding lookups are not re-charged.
