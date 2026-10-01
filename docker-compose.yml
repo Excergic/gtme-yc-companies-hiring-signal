@@ -1,0 +1,49 @@
+# VPS deployment. Bind-mounts ./data and ./out so state lives on the host
+# filesystem and survives rebuilds, container removal and reboots.
+services:
+  app:
+    build: .
+    image: gtm-leadgen:latest
+    container_name: gtm-leadgen
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATA_DIR: /data/data
+      OUT_DIR: /data/out
+    volumes:
+      - ./data:/data/data
+      - ./out:/data/out
+    # bound to localhost: Caddy terminates TLS and proxies in.
+    # drop the 127.0.0.1 prefix only if you intend to expose it directly.
+    ports:
+      - "127.0.0.1:8000:8000"
+    healthcheck:
+      test: ["CMD","python3","-c","import urllib.request;urllib.request.urlopen('http://127.0.0.1:8000/health',timeout=5)"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    logging:
+      driver: json-file
+      options: {max-size: "10m", max-file: "3"}
+
+  # Optional: automatic HTTPS. Start with `docker compose --profile tls up -d`
+  # after pointing a DNS A record at the VPS and setting DOMAIN + EMAIL in .env.
+  caddy:
+    image: caddy:2-alpine
+    container_name: gtm-caddy
+    restart: unless-stopped
+    profiles: ["tls"]
+    env_file: .env
+    depends_on: [app]
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:

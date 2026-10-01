@@ -1,0 +1,12 @@
+# Automatic HTTPS via Let's Encrypt. DOMAIN and EMAIL come from .env.
+{$DOMAIN} {
+	tls {$EMAIL}
+	encode gzip
+
+	# The dashboard and read endpoints are public to anyone with the URL.
+	# POST /api/run is already protected by X-API-Token in the app.
+	reverse_proxy app:8000 {
+		header_up X-Forwarded-For {remote_host}
+		header_up X-Forwarded-Proto {scheme}
+	}
+}
